@@ -47,11 +47,8 @@ class Scene (
 
   init{
     gameObjects += sphereObjects
-    // gameObjects += GameObject(*sphereMeshes)
   }
 
-
-  // LABTODO: replace with 3D camera
   val camera = PerspectiveCamera().apply{
     update()
   }
@@ -65,7 +62,6 @@ class Scene (
   var timeAtLastFrame =  timeAtFirstFrame
 
   init{
-    //LABTODO: enable depth test
     gl.enable(GL.DEPTH_TEST)
   }
 
@@ -76,7 +72,6 @@ class Scene (
     val t = (timeAtThisFrame - timeAtFirstFrame).toFloat() / 1000.0f
     timeAtLastFrame = timeAtThisFrame
 
-    //LABTODO: move camera
     camera.move(dt, keysPressed)
 
     sphereObjects.position.set(sin(t), cos(t), 0.0f);
