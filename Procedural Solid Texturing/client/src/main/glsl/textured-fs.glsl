@@ -4,6 +4,7 @@ precision highp float;
 
 in vec4 texCoord;
 in vec4 modelPosition;
+in vec4 worldPosition;
 
 uniform struct {
   vec3 lightWoodColor;
@@ -33,7 +34,8 @@ float snoise(vec3 r) {
 
 
 void main(void) {
-  float w = fract(modelPosition.x * material.freq + pow(
+  // change to worldPosition instead of modelPosition for cool effect
+  float w = fract(modelPosition.x * material.freq + pow( 
      snoise(modelPosition.xyz * material.noiseFreq),
      material.noiseExp) * material.noiseAmp
   );
@@ -41,5 +43,6 @@ void main(void) {
   vec3 color = mix(material.lightWoodColor, material.darkWoodColor, w); 
 
   fragmentColor = vec4(color, 1.0f);
+  // fragmentColor = vec4(fract(modelPosition.x * 10.0f), 1.0f, 1.0f, 1.0f);
   fragmentColor.rgb *= scene.shadowColor;
 }

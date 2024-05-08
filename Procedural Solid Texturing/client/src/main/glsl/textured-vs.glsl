@@ -25,11 +25,11 @@ void main(void) {
         1.0, 0.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 0.0,
         0.0, 0.0, 1.0, 0.0,
-        0.0, 1.5, 0.0, 1.0
+        0.0, 2.5, 0.0, 1.0
     );
 
   modelPosition = vertexPosition;
   gl_Position = translationMatrix * vertexPosition * gameObject.modelMatrix * scene.shadowMatrix * camera.viewProjMatrix;
-  worldPosition = gl_Position;
+  worldPosition = vertexPosition * gameObject.modelMatrix;
   texCoord = vertexTexCoord;
 }
