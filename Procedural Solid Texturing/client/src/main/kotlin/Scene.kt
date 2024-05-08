@@ -43,8 +43,11 @@ class Scene (
     }
   )
 
+  val sphereObjects = GameObject(*sphereMeshes)
+
   init{
-    gameObjects += GameObject(*sphereMeshes)
+    gameObjects += sphereObjects
+    // gameObjects += GameObject(*sphereMeshes)
   }
 
 
@@ -75,6 +78,8 @@ class Scene (
 
     //LABTODO: move camera
     camera.move(dt, keysPressed)
+
+    sphereObjects.position.set(sin(t), cos(t), 0.0f);
     
     gl.clearColor(0.3f, 0.0f, 0.3f, 1.0f)//## red, green, blue, alpha in [0, 1]
     gl.clearDepth(1.0f)//## will be useful in 3D ˙HUN˙ 3D-ben lesz hasznos
